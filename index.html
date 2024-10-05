@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+<!--Registration form-->
+    <form id="userform" class="flex flex-col">
+        
+        <div class="container justify-center m-auto max-w-md bg-white rounded-lg shadow-md">
+        <h1 class="text-center text-3xl font-bold p-11">Registration Form</h1>
+        <div class="text-center ml-4 grid grid-cols-1">
+                <div>
+                    <div class=" flex flex-col grid grid-cols-2 mx-2">
+                        <label for="name" class="font-bold text-left mt-3">Name</label>
+                        <input class="bg-gray-200 inline-block shadow-md w-auto " 
+                        placeholder="Enter full name" required type="text" id="name" name="name"><br>
+                    </div>
+                    <div class=" flex flex-col grid grid-cols-2 mx-2">
+                        <label for="email" class="font-bold text-left mt-3">Email</label>
+                        <input class="bg-gray-200 inline-block shadow-md w-auto " 
+                        placeholder="Enter email" required type="email" id="email" name="email"><br>
+                    </div>
+                    <div class=" flex flex-col grid grid-cols-2 mx-2">
+                        <label for="password" class="font-bold text-left mt-3">Password</label>
+                        <input class="bg-gray-200 inline-block shadow-md w-auto " 
+                        placeholder="Enter password" required type="password" id="password" name="password"><br>
+                    </div>
+                    <div class=" flex flex-col grid grid-cols-2 mx-2">
+                        <label for="dob" class="font-bold text-left mt-3">Date of Birth</label>
+                        <input class="bg-gray-200 inline-block shadow-md w-auto " 
+                        required type="date" id="dob" name="dob"><br>
+                    </div>
+                    <div class="flex items-center mt-3">
+                        <input required type="checkbox" id="terms" name="terms">
+                        <label for="terms" class="block font-bold">Accept Terms & Conditions</label>
+                      </div>
+                    <div class="flex justify-center mb-4">
+                        <button type="submit" class="bg-green-800 text-white font-bold py-2 px-4 rounded-lg">Submit</button>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+<!--Display entries-->
+<div class="container mx-auto mt-8">
+    <table id="entriesTable" class="min-w-full bg-white rounded-lg shadow-md">
+        <thead>
+            <tr>
+                <th class="py-2 px-4 border-b">Name</th>
+                <th class="py-2 px-4 border-b">Email</th>
+                <th class="py-2 px-4 border-b">Password</th>
+                <th class="py-2 px-4 border-b">Date of Birth</th>
+                <th class="py-2 px-4 border-b">Accepted Terms?</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+   <!--Age validation-->
+    <script>
+       
+        const dob = document.getElementById('dob');
+        dob.addEventListener('change', () => validate(dob));
+
+        function validate(element) {
+            const selected = new Date(element.value);
+            const today = new Date();
+            let age = today.getFullYear() - selected.getFullYear();
+            let monthDifference = today.getMonth() - selected.getMonth();
+            if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < selected.getDate())) {
+                age--;
+            }
+            if (age < 18 || age > 55) {
+                element.setCustomValidity("The age should be between 18 and 55.");
+            } else {
+                element.setCustomValidity("");
+            }
+            element.reportValidity();
+        }
+
+    </script>
+        <script src="index.js"></script>
+</body>
+</html>
+
