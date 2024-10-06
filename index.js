@@ -40,7 +40,7 @@ function addEntryToTable(entry) {
     newRow.innerHTML = `
         <td class="border py-2 px-4">${entry.name}</td>
         <td class="border py-2 px-4">${entry.email}</td>
-        <td class="border py-2 px-4">${'*'.repeat(entry.password.length)}</td>
+        <td class="border py-2 px-4">${entry.password}</td>
         <td class="border py-2 px-4">${entry.dob}</td>
         <td class="border py-2 px-4">${entry.termsAccepted}</td>
     `;
