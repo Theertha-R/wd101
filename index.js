@@ -34,18 +34,21 @@ function saveEntryToStorage(entry) {
     localStorage.setItem('entries', JSON.stringify(entries));
 }
 function addEntryToTable(entry) {
+    const date = new Date(entry.dob);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    const formattedDate = `${day}-${month}-${year}`;
     const tableBody = document.getElementById('entriesBody');
     const newRow = document.createElement('tr');
 
     newRow.innerHTML = `
         <td class="border py-2 px-4">${entry.name}</td>
         <td class="border py-2 px-4">${entry.email}</td>
-        <td class="border py-2 px-4">${entry.password}</td>
-        <td class="border py-2 px-4">${entry.dob}</td>
+        <td class="border py-2 px-4">${'*'.repeat(entry.password.length)}</td>
+        <td class="border py-2 px-4">${formattedDate}</td>
         <td class="border py-2 px-4">${entry.termsAccepted}</td>
     `;
 
     tableBody.appendChild(newRow);
 }
-
-      
